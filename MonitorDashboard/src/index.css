@@ -1,0 +1,64 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: #ffe5b5;
+  color: black;
+
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.HardwareIteration {
+  width: 200px;
+  height: 150px;
+  background-color: #ffe5b5; 
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 10);
+  text-align: center;
+  padding: 20px;
+  margin-left: 5%;
+  color: black;
+}
+.HardwareIteration:hover{
+  box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.75);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.HardwareID {
+  margin: 0; 
+}
+.clipartHardware {
+  width: 100px; 
+  height: auto; 
+  margin-top: 10px; 
+}
+.extendedInfo {
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: black;
+}
+
+h3 {
+  color: #333;
+}
