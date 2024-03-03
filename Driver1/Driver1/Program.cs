@@ -10,32 +10,12 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Diagnostics;
+using System.Reflection;
 
 
 public class Program
 {
-    static async Task SendMonitoredDataAsync(object monitorData, string imagePath)
-    {
-        using (var httpClient = new HttpClient())
-        using (var formData = new MultipartFormDataContent())
-        {
-            // Convert monitorData to JSON and add it to the form
-            var jsonContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(monitorData));
-            formData.Add(jsonContent, "monitorData");
-
-            // Add the image to the form
-            var imageContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
-            imageContent.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
-            formData.Add(imageContent, "Screenshot", "CurrentScreenshot.jpg");
-
-            // Send the form data to the API
-            var apiUrl = "http://localhost:3001/api/monitored-data";
-            var response = await httpClient.PostAsync(apiUrl, formData);
-
-            response.EnsureSuccessStatusCode();
-        }
-    }
-
     static async Task Main()
     {
         while (true)
@@ -46,22 +26,29 @@ public class Program
                 {
                     // Monitored data properties
                     deviceName = System.Environment.MachineName,
+                    userName = Environment.UserName,
                     localIP = GetLocalIPAddress(),
                     languageLayout = CultureInfo.InstalledUICulture.EnglishName,
                     timeZone = TimeZoneInfo.Local.DisplayName,
                     batteryPercentage = BatteryInfo.GetBatteryPercentage(),
                     isBatteryPluggedIn = BatteryInfo.IsPluggedIn(),
                     isConnectedToInternet = new WebClient().DownloadString("http://www.google.com") != null, // Bad way to check but it works
+                    processorModel = Environment.GetEnvironmentVariable("PROCESSOR_IDENTIFIER"),
+                    processorArchitecture = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE"),
+                    processorCount = Environment.ProcessorCount,
+                    logicalDrivesAvailable = Environment.GetLogicalDrives(),
+                    osVersion = Environment.OSVersion.VersionString,
+                    is64BitOS = Environment.Is64BitOperatingSystem,
+                    ramUsage = Process.GetCurrentProcess().PrivateMemorySize64,
                     timeOfMonitoring = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"),
                 };
-
-                await SendMonitoredDataAsync(monitoredData, ScreenshotCapture.GetScreenshotPath());
+                await APIHandler.SendMonitoredDataAsync(monitoredData, ScreenshotCapture.GetScreenshotPath());
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-            Thread.Sleep(60000);
+            Thread.Sleep(30000);
         }
         
     }

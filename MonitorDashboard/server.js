@@ -12,6 +12,10 @@ app.use(fileUpload());
 let monitoredDataArray = [];
 
 
+
+// Add some JSON stuff? mabye for Image save or just remembering devices last infos?
+
+
 // Endpoint to receive data and image from C# app
 app.post('/api/monitored-data', (req, res) => {
     const monitorData = req.body.monitorData ? JSON.parse(req.body.monitorData) : null;
@@ -19,11 +23,9 @@ app.post('/api/monitored-data', (req, res) => {
 
     const existingEntryIndex = monitoredDataArray.findIndex(item => item.monitorData.deviceName === monitorData.deviceName);
     if (existingEntryIndex !== -1) {
-        // If exists, overwrite the existing entry with new data
         console.log("did exist");
         monitoredDataArray[existingEntryIndex] = { monitorData, image };
     } else {
-        // If not exists, add a new entry
         console.log("did not exist");
         monitoredDataArray.push({ monitorData, image });
     }

@@ -1,28 +1,21 @@
 // MainComponent.jsx
 import React, { useState, useEffect } from 'react';
 import HardwareDetails from './HardwareDetails';
-import { backendURL } from './services/setupGuide';
+import { backendURL } from '../services/setupGuide';
+import {fetchDevices } from '../services/apiFetcher';
 
 function MainComponent() {
   const [selectedDevice, setSelectedDevice] = useState(null);
   const [hardwareIterations, setHardwareIterations] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${backendURL}/api/devices`);
-        const data = await response.json();
-        setHardwareIterations(data);
-      } catch (error) { console.error('Error fetching device names:', error);}
-    };
-    fetchData();
-    const intervalId = setInterval(fetchData, 1000);
+    const intervalId = setInterval(() => {
+      fetchDevices(backendURL, setHardwareIterations);
+    }, 500);
     return () => clearInterval(intervalId);
-  }, []); 
+  }, []);
 
-  const handleHardwareClick = (deviceName) => {
-    setSelectedDevice(deviceName);
-  };
+  const handleHardwareClick = (deviceName) => {setSelectedDevice(deviceName);};
 
   return (
     <div className='wrap'>

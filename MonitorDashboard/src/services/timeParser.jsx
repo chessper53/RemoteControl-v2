@@ -4,5 +4,5 @@ export const calculateElapsedTime = (apiDateString) => {
     const timeDifference = currentDate - apiDate;
     const timeDifferenceInSeconds = Math.floor(timeDifference / 1000);
     return timeDifferenceInSeconds;
-  };
+};
   
