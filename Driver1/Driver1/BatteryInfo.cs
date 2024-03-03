@@ -24,13 +24,17 @@ namespace Driver1
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool GetSystemPowerStatus(out SYSTEM_POWER_STATUS systemPowerStatus);
 
-        public static int GetBatteryPercentage()
+        public static string GetBatteryPercentage()
         {
             if (GetSystemPowerStatus(out var status))
             {
-                return status.BatteryLifePercent;
+                if (status.BatteryLifePercent == 255)
+                {
+                    return "Device does not contain a Battery";
+                }
+                else { return status.BatteryLifePercent.ToString() + "%"; }
             }
-            return -1; 
+            return "Unkown Error"; 
         }
 
         public static bool IsPluggedIn()

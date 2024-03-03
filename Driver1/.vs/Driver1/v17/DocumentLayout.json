@@ -1,21 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\caspa\\source\\repos\\Driver1\\",
+  "WorkspaceRootPath": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|c:\\users\\caspa\\source\\repos\\driver1\\driver1\\driver1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|solutionrelative:driver1\\driver1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|c:\\users\\caspa\\source\\repos\\driver1\\driver1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|c:\\users\\caspa\\documents\\programming\\monitordashboard\\driver1\\driver1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|solutionrelative:driver1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|c:\\users\\caspa\\source\\repos\\driver1\\driver1\\batteryinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|c:\\users\\caspa\\documents\\programming\\monitordashboard\\driver1\\driver1\\batteryinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|solutionrelative:driver1\\batteryinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|c:\\users\\caspa\\source\\repos\\driver1\\driver1\\screenshotcapture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|c:\\users\\caspa\\documents\\programming\\monitordashboard\\driver1\\driver1\\driver1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|solutionrelative:driver1\\driver1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|c:\\users\\caspa\\documents\\programming\\monitordashboard\\driver1\\driver1\\screenshotcapture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4030099-2FDC-49CA-B356-4E2C42F5DFD0}|Driver1\\Driver1.csproj|solutionrelative:driver1\\screenshotcapture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,15 +26,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Driver1",
-              "DocumentMoniker": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\Driver1.csproj",
+              "DocumentIndex": 2,
+              "Title": "Driver1.csproj",
+              "DocumentMoniker": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\Driver1.csproj",
               "RelativeDocumentMoniker": "Driver1\\Driver1.csproj",
-              "ToolTip": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\Driver1.csproj",
+              "ToolTip": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\Driver1.csproj",
               "RelativeToolTip": "Driver1\\Driver1.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -42,44 +42,40 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "ScreenshotCapture.cs",
-              "DocumentMoniker": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\ScreenshotCapture.cs",
+              "DocumentMoniker": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\ScreenshotCapture.cs",
               "RelativeDocumentMoniker": "Driver1\\ScreenshotCapture.cs",
-              "ToolTip": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\ScreenshotCapture.cs",
+              "ToolTip": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\ScreenshotCapture.cs",
               "RelativeToolTip": "Driver1\\ScreenshotCapture.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAowDoAAAABAAAA",
+              "ViewState": "AQIAABkAAAAAAAAAAAAiwDoAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-01T18:03:04.452Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "BatteryInfo.cs",
-              "DocumentMoniker": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\BatteryInfo.cs",
+              "DocumentMoniker": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\BatteryInfo.cs",
               "RelativeDocumentMoniker": "Driver1\\BatteryInfo.cs",
-              "ToolTip": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\BatteryInfo.cs",
+              "ToolTip": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\BatteryInfo.cs",
               "RelativeToolTip": "Driver1\\BatteryInfo.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwA8AAAAkAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAAwCQAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-01T17:47:56.486Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\Program.cs",
               "RelativeDocumentMoniker": "Driver1\\Program.cs",
-              "ToolTip": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\Program.cs",
+              "ToolTip": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\Program.cs",
               "RelativeToolTip": "Driver1\\Program.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAgwD8AAAAaAAAA",
+              "ViewState": "AQIAACUAAAAAAAAAAAAYwEIAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-01T17:03:32.558Z",
               "EditorCaption": ""

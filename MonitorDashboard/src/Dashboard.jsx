@@ -1,31 +1,32 @@
 // MainComponent.jsx
 import React, { useState, useEffect } from 'react';
-import HardwareDetails from './HardwareDetails'; // Adjust the path as needed
+import HardwareDetails from './HardwareDetails';
+import { backendURL } from './services/setupGuide';
 
 function MainComponent() {
   const [selectedDevice, setSelectedDevice] = useState(null);
   const [hardwareIterations, setHardwareIterations] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/devices')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => setHardwareIterations(data))
-      .catch(error => console.error('Error fetching device names:', error));
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${backendURL}/api/devices`);
+        const data = await response.json();
+        setHardwareIterations(data);
+      } catch (error) { console.error('Error fetching device names:', error);}
+    };
+    fetchData();
+    const intervalId = setInterval(fetchData, 1000);
+    return () => clearInterval(intervalId);
   }, []); 
 
   const handleHardwareClick = (deviceName) => {
     setSelectedDevice(deviceName);
   };
 
-  
-
   return (
-    <div>
+    <div className='wrap'>
+      <h1>Initialized Devices:</h1>
       <div className='container'>
         {hardwareIterations.map((deviceName, index) => (
           <div key={index} className='HardwareIteration' onClick={() => handleHardwareClick(deviceName)}>
@@ -34,6 +35,7 @@ function MainComponent() {
           </div>
         ))}
       </div>
+      
       {selectedDevice && <HardwareDetails deviceName={selectedDevice} />}
     </div>
   );

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\Driver1.csproj": {}
+    "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\Driver1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\Driver1.csproj": {
+    "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\Driver1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\Driver1.csproj",
+        "projectUniqueName": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\Driver1.csproj",
         "projectName": "Driver1",
-        "projectPath": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\Driver1.csproj",
+        "projectPath": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\Driver1.csproj",
         "packagesPath": "C:\\Users\\caspa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\obj\\",
+        "outputPath": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\caspa\\AppData\\Roaming\\NuGet\\NuGet.Config",

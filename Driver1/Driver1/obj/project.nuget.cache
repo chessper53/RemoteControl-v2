@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "byW6Yb7K4R3D395rT0W6WeC0gT3gaUTEJDviYqXJIlO7yf9gv2d23rcDII+oFMrSWhYvfKyNCUu9iGpvJbSa8Q==",
+  "dgSpecHash": "MCMe7KuPmpd21fMxVE6dXSEvG2KbccuyJLLNAcOJuClUYONY3w0Q8fbqCSYsXDG9DCIYQAUMFR6mQTn7yLlTZA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\caspa\\source\\repos\\Driver1\\Driver1\\Driver1.csproj",
+  "projectFilePath": "C:\\Users\\caspa\\Documents\\Programming\\MonitorDashboard\\Driver1\\Driver1\\Driver1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\caspa\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
     "C:\\Users\\caspa\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",

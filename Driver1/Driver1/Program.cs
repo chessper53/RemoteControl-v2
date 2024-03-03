@@ -32,7 +32,7 @@ public class Program
             var apiUrl = "http://localhost:3001/api/monitored-data";
             var response = await httpClient.PostAsync(apiUrl, formData);
 
-            response.EnsureSuccessStatusCode(); // Ensure a successful response
+            response.EnsureSuccessStatusCode();
         }
     }
 
@@ -49,9 +49,10 @@ public class Program
                     localIP = GetLocalIPAddress(),
                     languageLayout = CultureInfo.InstalledUICulture.EnglishName,
                     timeZone = TimeZoneInfo.Local.DisplayName,
-                    batteryPercentage = BatteryInfo.GetBatteryPercentage().ToString() + "%",
-                    isConnectedToInternet = new WebClient().DownloadString("http://www.google.com") != null, //Checks if it can open google, if it can, there is a connection
-                    batteryPluggedIn = BatteryInfo.IsPluggedIn(),
+                    batteryPercentage = BatteryInfo.GetBatteryPercentage(),
+                    isBatteryPluggedIn = BatteryInfo.IsPluggedIn(),
+                    isConnectedToInternet = new WebClient().DownloadString("http://www.google.com") != null, // Bad way to check but it works
+                    timeOfMonitoring = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"),
                 };
 
                 await SendMonitoredDataAsync(monitoredData, ScreenshotCapture.GetScreenshotPath());
@@ -60,8 +61,7 @@ public class Program
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-
-            Thread.Sleep(5000);
+            Thread.Sleep(60000);
         }
         
     }
