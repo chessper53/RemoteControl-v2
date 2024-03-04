@@ -1,6 +1,6 @@
 import React, { useState ,useRef , useEffect } from 'react';
 import { backendURL } from '../services/setupGuide';
-import { fetchTableData, postCommand} from '../services/apiHandler';
+import { fetchTableData, postCommand, sendBackgroundImage} from '../services/apiHandler';
 
 
 function HardwareDetails({ deviceName }) {
@@ -8,17 +8,19 @@ function HardwareDetails({ deviceName }) {
   const [elapsedTime, setElapsedTime] = useState(0);
   const fileInputRef = useRef(null);
 
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
+  const handleFileSelect = () => {
+    const fileInput = fileInputRef.current;
+    if (fileInput.files.length > 0) {
+      const selectedFile = fileInput.files[0];
       const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64Data = reader.result;
+      reader.onload = (event) => {
+        const base64Data = event.target.result;
+        sendBackgroundImage(base64Data)
+        postCommand("Wallpaper", deviceName)
       };
       reader.readAsDataURL(selectedFile);
     }
   };
-
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -28,12 +30,11 @@ function HardwareDetails({ deviceName }) {
   }, []);
 
   function handleCommandInput(command){
-    if (command === 'Wallpaper') {
-      fileInputRef.current.click();
-    }else{
-      postCommand(command,deviceName)
-    }
+    if (command === 'Wallpaper') { fileInputRef.current.click();}
+    else{ postCommand(command,deviceName)}
   }
+
+
   return (
     <div className='wrap'>
       <div className='extendedInfo'>
@@ -106,7 +107,7 @@ function HardwareDetails({ deviceName }) {
         )}
       </div>
        {/* Hidden file input */}
-      <input type="file" ref={fileInputRef} accept="image/*" style={{ display: 'none' }} onChange={handleFileChange}/>
+      <input type="file" ref={fileInputRef} accept="image/*" style={{ display: 'none' }} onChange={handleFileSelect}/>
     </div>
   );
 }

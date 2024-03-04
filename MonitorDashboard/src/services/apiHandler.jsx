@@ -11,7 +11,6 @@ export const fetchDevices = async (backendURL, setHardwareIterations) => {
 
     } catch (error) {
       console.error('Error fetching device names:', error);
-
     }
 };
 
@@ -38,7 +37,6 @@ export const postCommand = async (data, deviceName) => {
       },
       body: JSON.stringify({ data, deviceName }),
     });
-
     if (!response.ok) {
       throw new Error('Failed to submit data');
     }
@@ -47,6 +45,23 @@ export const postCommand = async (data, deviceName) => {
     console.error('Error submitting data:', error);
   }
 };
+
+
+export const sendBackgroundImage = async (base64Data) => {
+  try {
+    const apiUrl = 'http://localhost:3001/api/backgroundImage';
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ base64Data }),
+    });
+  } catch (error) {
+    console.error('Error sending Base64 data:', error.message);
+  }
+};
+
 
 
   

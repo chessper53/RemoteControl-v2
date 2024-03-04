@@ -20,9 +20,10 @@ public class Program
     {
         while (true)
         {
+            Console.WriteLine("t");
+
             try
             {
-                
                 var monitoredData = new
                 {
                     // Monitored data properties
@@ -47,11 +48,10 @@ public class Program
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Error the: {ex.Message}");
             }
             Thread.Sleep(30000);
             await APIHandler.checkforRemoteCommands();
-
         }
 
     }

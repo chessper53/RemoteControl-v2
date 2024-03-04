@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 app.use(fileUpload());
 let monitoredDataArray = [];
 let outgoingCommandsArray = [];
+let newBackgroundImage;
 
 // Endpoint to receive data and image from C# app
 app.post('/api/monitored-data', (req, res) => {
@@ -18,16 +19,8 @@ app.post('/api/monitored-data', (req, res) => {
     const image = req.files ? req.files.Screenshot : null;
     const wallpaper = req.files ? req.files.Wallpaper : null;
     const existingEntryIndex = monitoredDataArray.findIndex(item => item.monitorData.deviceName === monitorData.deviceName);
-    
-    if (existingEntryIndex !== -1) {
-        console.log("did exist");
-        monitoredDataArray[existingEntryIndex] = { monitorData, image, wallpaper};
-    } else {
-        console.log("did not exist");
-        monitoredDataArray.push({ monitorData, image, wallpaper});
-    }
-    console.log(monitoredDataArray);  
-
+    if (existingEntryIndex !== -1) { monitoredDataArray[existingEntryIndex] = { monitorData, image, wallpaper};}
+    else { monitoredDataArray.push({ monitorData, image, wallpaper});}
     res.status(200).send('Data received successfully');
 });
 
@@ -64,14 +57,7 @@ app.get('/api/monitored-data/:deviceName', (req, res) => {
 // Endpoint to get all deviceNames
 app.get('/api/devices', (_, res) => {
   const deviceNames = monitoredDataArray.map(item => item.monitorData.deviceName);
-
-  if (deviceNames.length > 0) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.status(200).json(deviceNames);
-  } else {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.status(404).json({ error: 'No Devices are connected' });
-  }
+  res.status(200).json(deviceNames);
 }); 
 
 // Endpoint to get command data for a specific device
@@ -79,7 +65,6 @@ app.get('/api/command/:deviceName', (req, res) => {
   const { deviceName } = req.params;
   if (outgoingCommandsArray[deviceName]) {
     const commandData = outgoingCommandsArray[deviceName];
-    commandData.data
     //Clear Array//////////////////////////////////////////////////////////////////////////////
     console.log(`Sending command data for device ${deviceName}:`, commandData);
     res.status(200).json(commandData);
@@ -89,6 +74,20 @@ app.get('/api/command/:deviceName', (req, res) => {
   }
 });
 
+// Endpoit for the Background Image Upload
+app.post('/api/backgroundImage', (req, res) => {
+  try {
+    const { base64Data } = req.body;
+    newBackgroundImage = base64Data
+  } catch (error) {
+    console.error('Error processing Base64 data:', error);
+  }
+});
+
+// Endpoint to retrieve custom Wallpaper data
+app.get('/api/wallpaper64', (req, res) => {
+  res.status(200).json({ newBackgroundImage });
+});
 
 app.listen(port, () => {
   console.log(`Server is up on ${port}`);

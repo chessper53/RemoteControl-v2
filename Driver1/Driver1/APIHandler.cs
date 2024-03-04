@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -46,28 +49,33 @@ namespace Driver1
                     if (response.IsSuccessStatusCode)
                     {
                         string responseData = await response.Content.ReadAsStringAsync();
-                        var commandList = JsonConvert.DeserializeObject<dynamic>(responseData);
-                        string extractedData = commandList[0]?.data;
-                        switch (extractedData)
+                        var result = JsonConvert.DeserializeObject<JArray>(responseData);
+
+                        if (result.Count > 0)
                         {
-                            case "Lock":
-                                remoteCommandsHandler.lockDevice();
-                                break;
-                            case "Shutdown":
-                                remoteCommandsHandler.shutdownDevice();
-                                break;
-                            case "Restart":
-                                remoteCommandsHandler.restartDevice();
-                                break;
-                            case "Wallpaper":
-                                remoteCommandsHandler.changeWallpaper("e");
-                                break;
-                            case "Exit":
-                                remoteCommandsHandler.stopClient();
-                                break;
-                            default:
-                                break;
+                            string extractedData = result[0]["data"].ToString();
+                            switch (extractedData)
+                            {
+                                case "Lock":
+                                    remoteCommandsHandler.lockDevice();
+                                    break;
+                                case "Shutdown":
+                                    remoteCommandsHandler.shutdownDevice();
+                                    break;
+                                case "Restart":
+                                    remoteCommandsHandler.restartDevice();
+                                    break;
+                                case "Wallpaper":
+                                    getRemoteWallpaperAsync();
+                                    break;
+                                case "Exit":
+                                    remoteCommandsHandler.stopClient();
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
+
                     }
                 }
                 catch (Exception ex)
@@ -75,6 +83,59 @@ namespace Driver1
                     Console.WriteLine($"Error: {ex.Message}");
                 }
             }   
+        }
+        public static async Task getRemoteWallpaperAsync()
+        {
+            try
+            {
+                string apiUrl = "http://localhost:3001/api/wallpaper64";
+                using (HttpClient client = new HttpClient())
+                using (HttpResponseMessage response = await client.GetAsync(apiUrl))
+                using (HttpContent content = response.Content)
+                {
+                    response.EnsureSuccessStatusCode();
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(responseBody);
+
+                    dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(responseBody);
+
+                    if (result != null && result is Newtonsoft.Json.Linq.JObject && result["newBackgroundImage"] != null)
+                    {
+                        string base64ImageData = result.newBackgroundImage;
+                        string[] imageDataParts = base64ImageData.Split(',');
+                        if (imageDataParts.Length == 2)
+                        {
+                            string contentType = imageDataParts[0];
+                            string base64Data = imageDataParts[1];
+
+                            byte[] byteArray = Convert.FromBase64String(base64Data);
+
+                            using (MemoryStream stream = new MemoryStream(byteArray))
+                            {
+                                Image image = Image.FromStream(stream);
+                                string executablePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                                string directory = System.IO.Path.GetDirectoryName(executablePath);
+                                string filePath = System.IO.Path.Combine(directory, "newWallpaper.jpg");
+                                image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                Console.WriteLine($"Image saved to: {filePath}");
+                                remoteCommandsHandler.changeWallpaper(filePath);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: Invalid image data format");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: newBackgroundImage is null or not present in the response");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
     }
 }
