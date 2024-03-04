@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import HardwareDetails from './HardwareDetails';
 import { backendURL } from '../services/setupGuide';
-import {fetchDevices } from '../services/apiFetcher';
+import {fetchDevices } from '../services/apiHandler';
 
 function MainComponent() {
   const [selectedDevice, setSelectedDevice] = useState(null);

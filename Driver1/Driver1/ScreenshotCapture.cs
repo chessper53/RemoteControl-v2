@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 
 namespace Driver1
@@ -54,6 +55,15 @@ namespace Driver1
             string filePath = System.IO.Path.Combine(directory, "CurrentScreenshot.jpg");
             image.Save(filePath, ImageFormat.Jpeg);
             return filePath;
+        }
+
+        public static string GetCurrentWallpaper()
+        {
+            RegistryKey theCurrentMachine = Registry.CurrentUser;
+            RegistryKey theControlPanel = theCurrentMachine.OpenSubKey("Control Panel");
+            RegistryKey theDesktop = theControlPanel.OpenSubKey("Desktop");
+            string wallpaperPath = Convert.ToString(theDesktop.GetValue("Wallpaper"));
+            return wallpaperPath;
         }
     }
 }
