@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(fileUpload());
 let monitoredDataArray = [];
 let outgoingCommandsArray = [];
-let newBackgroundImage;
+let additionalData;
 
 // Endpoint to receive data and image from C# app
 app.post('/api/monitored-data', (req, res) => {
@@ -45,7 +45,7 @@ app.get('/api/monitored-data/:deviceName', (req, res) => {
       data: base64Image,
     };
     const wallpaperData = {
-      ...entry.wallpaper,
+      ...entry.wallpaper, 
       data: base64Image2,
     };
     res.status(200).json({ ...entry, image: imageData , wallpaper :wallpaperData});
@@ -65,28 +65,28 @@ app.get('/api/command/:deviceName', (req, res) => {
   const { deviceName } = req.params;
   if (outgoingCommandsArray[deviceName]) {
     const commandData = outgoingCommandsArray[deviceName];
-    //Clear Array//////////////////////////////////////////////////////////////////////////////
+    delete outgoingCommandsArray[deviceName];
     console.log(`Sending command data for device ${deviceName}:`, commandData);
     res.status(200).json(commandData);
   } else {
-    console.log(`No data found for device ${deviceName}`);
     res.status(404).json({ error: 'No data found for the specified device' });
   }
 });
 
-// Endpoit for the Background Image Upload
-app.post('/api/backgroundImage', (req, res) => {
+// Endpoit for the Background Image Uplxoad
+app.post('/api/AdditionalDataUpload', (req, res) => {
   try {
-    const { base64Data } = req.body;
-    newBackgroundImage = base64Data
+    const { AdditionalData } = req.body;
+    additionalData = AdditionalData
   } catch (error) {
     console.error('Error processing Base64 data:', error);
   }
 });
 
 // Endpoint to retrieve custom Wallpaper data
-app.get('/api/wallpaper64', (req, res) => {
-  res.status(200).json({ newBackgroundImage });
+app.get('/api/additionalData', (req, res) => {
+  console.log(additionalData);
+  res.status(200).json({ additionalData });
 });
 
 app.listen(port, () => {

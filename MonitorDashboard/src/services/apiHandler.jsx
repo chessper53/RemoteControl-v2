@@ -47,15 +47,15 @@ export const postCommand = async (data, deviceName) => {
 };
 
 
-export const sendBackgroundImage = async (base64Data) => {
+export const sendAdditionalData = async (AdditionalData) => {
   try {
-    const apiUrl = 'http://localhost:3001/api/backgroundImage';
+    const apiUrl = 'http://localhost:3001/api/AdditionalDataUpload';
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ base64Data }),
+      body: JSON.stringify({ AdditionalData }),
     });
   } catch (error) {
     console.error('Error sending Base64 data:', error.message);

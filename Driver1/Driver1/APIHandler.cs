@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Driver1
@@ -31,7 +32,7 @@ namespace Driver1
                 imageContent2.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
                 formData.Add(imageContent2, "Wallpaper", "Wallpaper.jpg");
 
-                // Send the form data to the API
+                // Send the form data to the API        
                 var apiUrl = "http://localhost:3001/api/monitored-data";
                 var response = await httpClient.PostAsync(apiUrl, formData);
 
@@ -65,11 +66,17 @@ namespace Driver1
                                 case "Restart":
                                     remoteCommandsHandler.restartDevice();
                                     break;
-                                case "Wallpaper":
-                                    getRemoteWallpaperAsync();
-                                    break;
                                 case "Exit":
                                     remoteCommandsHandler.stopClient();
+                                    break;
+                                case "Webpage":
+                                    getRemoteAdditionalDataAsync();
+                                    break;
+                                case "Wallpaper":
+                                    getRemoteAdditionalDataAsync();
+                                    break;
+                                case "Message":
+                                    getRemoteAdditionalDataAsync();
                                     break;
                                 default:
                                     break;
@@ -84,25 +91,24 @@ namespace Driver1
                 }
             }   
         }
-        public static async Task getRemoteWallpaperAsync()
+        public static async Task getRemoteAdditionalDataAsync()
         {
             try
             {
-                string apiUrl = "http://localhost:3001/api/wallpaper64";
+                string apiUrl = "http://localhost:3001/api/additionalData";
                 using (HttpClient client = new HttpClient())
                 using (HttpResponseMessage response = await client.GetAsync(apiUrl))
                 using (HttpContent content = response.Content)
                 {
                     response.EnsureSuccessStatusCode();
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine(responseBody);
-
+                    string responseBody = await response.Content.ReadAsStringAsync();   
                     dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(responseBody);
+                    Console.WriteLine(result);
 
-                    if (result != null && result is Newtonsoft.Json.Linq.JObject && result["newBackgroundImage"] != null)
+                    if (result != null && result is Newtonsoft.Json.Linq.JObject && result["additionalData"] != null)
                     {
-                        string base64ImageData = result.newBackgroundImage;
-                        string[] imageDataParts = base64ImageData.Split(',');
+                        string basedata = result.additionalData;
+                        string[] imageDataParts = basedata.Split(',');
                         if (imageDataParts.Length == 2)
                         {
                             string contentType = imageDataParts[0];
@@ -123,12 +129,22 @@ namespace Driver1
                         }
                         else
                         {
-                            Console.WriteLine("Error: Invalid image data format");
+                            Console.WriteLine(basedata);
+                            string pattern = @"^(.*www.*|https?://\S+)$";
+                            bool isWebpage = Regex.IsMatch(basedata, pattern);
+                            if (isWebpage){remoteCommandsHandler.openWebpage(basedata); 
+                                Console.WriteLine("yess is webpage");
+                            }
+                            else // Is a Text Message from Dashboard
+                            {
+                                remoteCommandsHandler.displayRemoteMessage(basedata);
+                                Console.WriteLine("The input is not a webpage and does not contain 'www'.");
+                            }
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Error: newBackgroundImage is null or not present in the response");
+                        Console.WriteLine("Error: Additional Data is null or not present in the response");
                     }
                 }
             }

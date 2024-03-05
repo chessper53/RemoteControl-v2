@@ -1,10 +1,14 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using static System.Net.WebRequestMethods;
 
 namespace Driver1
 {
@@ -29,7 +33,24 @@ namespace Driver1
         {
 
         }
-        public static void restartDevice()
+        public static void openWebpage(string URL)
+        {
+            var psi = new ProcessStartInfo
+            {
+                FileName = URL,
+                UseShellExecute = true
+            };
+            Process.Start(psi);
+        }
+
+
+    public static void LaunchToastNotification(string message)
+    {
+
+    }
+
+
+    public static void restartDevice()
         {
             System.Diagnostics.Process.Start("shutdown.exe", "-r -t 0");
         }

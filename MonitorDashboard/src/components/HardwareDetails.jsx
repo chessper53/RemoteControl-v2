@@ -1,6 +1,6 @@
 import React, { useState ,useRef , useEffect } from 'react';
 import { backendURL } from '../services/setupGuide';
-import { fetchTableData, postCommand, sendBackgroundImage} from '../services/apiHandler';
+import { fetchTableData, postCommand, sendAdditionalData} from '../services/apiHandler';
 
 
 function HardwareDetails({ deviceName }) {
@@ -15,12 +15,17 @@ function HardwareDetails({ deviceName }) {
       const reader = new FileReader();
       reader.onload = (event) => {
         const base64Data = event.target.result;
-        sendBackgroundImage(base64Data)
+        sendAdditionalData(base64Data)
         postCommand("Wallpaper", deviceName)
       };
       reader.readAsDataURL(selectedFile);
     }
   };
+
+  function askForWebpageInput(the){
+    let foo = prompt(the);
+    return foo
+  }
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -31,6 +36,8 @@ function HardwareDetails({ deviceName }) {
 
   function handleCommandInput(command){
     if (command === 'Wallpaper') { fileInputRef.current.click();}
+    else if (command === 'Webpage') {sendAdditionalData(askForWebpageInput("Please enter the Web-URL")); postCommand("Webpage", deviceName);}
+    else if (command === 'Message') {sendAdditionalData(askForWebpageInput("Please enter the desired Message")); postCommand("Message", deviceName);}
     else{ postCommand(command,deviceName)}
   }
 
@@ -43,15 +50,20 @@ function HardwareDetails({ deviceName }) {
         <h4>New dataset every 30 Seconds</h4>
 
         <table>
+          <p>Possible Commands:</p>
           <tbody>
           <th className='command' onClick={() => handleCommandInput("Lock")}>Lock Device</th>
           <th className='command' onClick={() => handleCommandInput("Shutdown")}>Initiate Shut down</th>
           <th className='command' onClick={() => handleCommandInput("Restart")}>Initiate Restart</th>
           </tbody>
           <tbody>
-          <th className='command' onClick={() => handleCommandInput("-")}></th>
+          <th className='command' onClick={() => handleCommandInput("Webpage")}>Open Webpage</th>
           <th className='command' onClick={() => handleCommandInput("Wallpaper")}>Change Wallpaper</th>
           <th className='command' onClick={() => handleCommandInput("Exit")}>Stop Client</th>
+          </tbody>          <tbody>
+          <th className='command' onClick={() => handleCommandInput("Message")}>Send Message</th>
+          <th className='command' onClick={() => handleCommandInput("-")}>-</th>
+          <th className='command' onClick={() => handleCommandInput("-")}>-</th>
           </tbody>
         </table>
         {details ? (
