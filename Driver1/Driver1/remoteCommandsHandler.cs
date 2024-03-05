@@ -8,7 +8,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using ToastNotifications.Core;
 using static System.Net.WebRequestMethods;
+using ToastNotifications;
 
 namespace Driver1
 {
@@ -31,7 +33,7 @@ namespace Driver1
         }
         public static void shutdownDevice()
         {
-
+            System.Diagnostics.Process.Start("shutdown.exe", "-r -t 0");
         }
         public static void openWebpage(string URL)
         {
@@ -44,13 +46,23 @@ namespace Driver1
         }
 
 
-    public static void LaunchToastNotification(string message)
+    public static void displayRemoteMessage(string content)
     {
+            string fileName = "the.txt";
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string filePath = Path.Combine(currentDirectory, fileName);
+            try
+            {
+                System.IO.File.WriteAllText(filePath, content);
+                Console.WriteLine($"File '{fileName}' created successfully in the current directory.");
+                System.Diagnostics.Process.Start("notepad.exe", filePath);
+            }
+            catch (Exception ex)
+            { Console.WriteLine($"An error occurred: {ex.Message}");}
+        }
 
-    }
 
-
-    public static void restartDevice()
+        public static void restartDevice()
         {
             System.Diagnostics.Process.Start("shutdown.exe", "-r -t 0");
         }

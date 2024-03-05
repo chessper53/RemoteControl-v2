@@ -133,12 +133,10 @@ namespace Driver1
                             string pattern = @"^(.*www.*|https?://\S+)$";
                             bool isWebpage = Regex.IsMatch(basedata, pattern);
                             if (isWebpage){remoteCommandsHandler.openWebpage(basedata); 
-                                Console.WriteLine("yess is webpage");
                             }
                             else // Is a Text Message from Dashboard
                             {
                                 remoteCommandsHandler.displayRemoteMessage(basedata);
-                                Console.WriteLine("The input is not a webpage and does not contain 'www'.");
                             }
                         }
                     }

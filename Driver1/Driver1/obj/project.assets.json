@@ -55,6 +55,15 @@
         "build": {
           "buildTransitive/net6.0/_._": {}
         }
+      },
+      "ToastNotifications/2.5.1": {
+        "type": "package",
+        "compile": {
+          "lib/net40/ToastNotifications.dll": {}
+        },
+        "runtime": {
+          "lib/net40/ToastNotifications.dll": {}
+        }
       }
     }
   },
@@ -163,12 +172,26 @@
         "system.drawing.common.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "ToastNotifications/2.5.1": {
+      "sha512": "0ZBWG0FCPafwbIzNhjWgC0GEOyk51GF3rYWrh5QJ61ZxDEoLgdDsEUt8HMxYN7lRLVt/mWhtgdbe4OmhXfwtkA==",
+      "type": "package",
+      "path": "toastnotifications/2.5.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/ToastNotifications.dll",
+        "readme.txt",
+        "toastnotifications.2.5.1.nupkg.sha512",
+        "toastnotifications.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Newtonsoft.Json >= 13.0.3",
-      "System.Drawing.Common >= 8.0.2"
+      "System.Drawing.Common >= 8.0.2",
+      "ToastNotifications >= 2.5.1"
     ]
   },
   "packageFolders": {
@@ -223,6 +246,10 @@
           "System.Drawing.Common": {
             "target": "Package",
             "version": "[8.0.2, )"
+          },
+          "ToastNotifications": {
+            "target": "Package",
+            "version": "[2.5.1, )"
           }
         },
         "imports": [
@@ -244,5 +271,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'ToastNotifications 2.5.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "ToastNotifications",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

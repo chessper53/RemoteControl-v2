@@ -54,16 +54,12 @@ function HardwareDetails({ deviceName }) {
           <tbody>
           <th className='command' onClick={() => handleCommandInput("Lock")}>Lock Device</th>
           <th className='command' onClick={() => handleCommandInput("Shutdown")}>Initiate Shut down</th>
-          <th className='command' onClick={() => handleCommandInput("Restart")}>Initiate Restart</th>
+          <th className='command' onClick={() => handleCommandInput("Message")}>Send Message</th>
           </tbody>
           <tbody>
           <th className='command' onClick={() => handleCommandInput("Webpage")}>Open Webpage</th>
           <th className='command' onClick={() => handleCommandInput("Wallpaper")}>Change Wallpaper</th>
           <th className='command' onClick={() => handleCommandInput("Exit")}>Stop Client</th>
-          </tbody>          <tbody>
-          <th className='command' onClick={() => handleCommandInput("Message")}>Send Message</th>
-          <th className='command' onClick={() => handleCommandInput("-")}>-</th>
-          <th className='command' onClick={() => handleCommandInput("-")}>-</th>
           </tbody>
         </table>
         {details ? (
