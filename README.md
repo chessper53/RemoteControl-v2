@@ -41,8 +41,20 @@ Additionally, you can issue commands to the selected device. These commands, exe
 
 ## Set up
 ### C# Client
-The C# Client can be found under the XXX Folder and is a Console Application that will run in the Background, It is designed to use less Memory relativley to my last Version.
+The C# Client can be found under the [Driver1](Driver1/Driver1) Folder and is a Console Application that will run in the Background, It is designed to use less Memory relativley to my last Version.
 Starting it is as simple as just running the .exe File
+
 ### React Dashboard
+The React Frontend can be found under the [MonitorDashboard](MonitorDashboard) Folder and provides an Interface for the User to control all the connected Devices.
+
+To start the dashboard, open a terminal, move into your  `Project Folder` folder, and run the following commands:
+
+```bash
+cd ./MonitorDashboard/
+npm i
+npm run dev
+```
+
 ### Node JS Server
+The Node JS Server is also Located in the MonitorDashboard folder under the [server.js](MonitorDashboard/server.js) file.
 
