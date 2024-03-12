@@ -1,5 +1,5 @@
 # RemoteControl-v2
-Revamped Verison of my old RemoteControl Project. Now with an Express JS Server using my APIs to enable Communication between my react Dashboard and the C# Client.
+A revamped version of my original RemoteControl Project, now featuring an Express JS Server using APIs to enhance communication between the React Dashboard and the C# Client.
 ### What can it do?
 
 The client automatically sends comprehensive details and configurations to the API server every 30 seconds. This data, accompanied by a screenshot of the current screen and the device's wallpaper, is temporarily saved on the server. Meanwhile, React checks for connected devices and displays their corresponding device names on its dashboard. Clicking on a device reveals all available information, including a timer showing exactly how old the dataset is.
