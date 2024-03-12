@@ -49,7 +49,7 @@ export const postCommand = async (data, deviceName) => {
 
 export const sendAdditionalData = async (AdditionalData) => {
   try {
-    const apiUrl = 'http://localhost:3001/api/AdditionalDataUpload';
+    const apiUrl = backendURL + "/api/AdditionalDataUpload";
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {

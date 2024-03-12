@@ -14,6 +14,8 @@ namespace Driver1
 {
     public static class APIHandler
     {
+        public static string apiURL = "http://localhost:3001";
+
         public static async Task SendMonitoredDataAsync(object monitorData, string imagePath, string wallpaperPath)
         {
             using (var httpClient = new HttpClient())
@@ -33,7 +35,7 @@ namespace Driver1
                 formData.Add(imageContent2, "Wallpaper", "Wallpaper.jpg");
 
                 // Send the form data to the API        
-                var apiUrl = "http://localhost:3001/api/monitored-data";
+                var apiUrl = apiURL + "/api/monitored-data";
                 var response = await httpClient.PostAsync(apiUrl, formData);
 
                 response.EnsureSuccessStatusCode();
@@ -41,7 +43,7 @@ namespace Driver1
         }
         public static async Task checkforRemoteCommands()
         {
-            string apiUrl = $"http://localhost:3001/api/command/{System.Environment.MachineName}";
+            string apiUrl = $"{apiURL}/api/command/{System.Environment.MachineName}";
             using (HttpClient httpClient = new HttpClient())
             {
                 try
@@ -95,7 +97,7 @@ namespace Driver1
         {
             try
             {
-                string apiUrl = "http://localhost:3001/api/additionalData";
+                string apiUrl = apiURL + "/api/additionalData";
                 using (HttpClient client = new HttpClient())
                 using (HttpResponseMessage response = await client.GetAsync(apiUrl))
                 using (HttpContent content = response.Content)
