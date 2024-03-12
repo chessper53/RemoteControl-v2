@@ -36,18 +36,16 @@ Additionally, you can issue commands to the selected device. These commands, exe
 - **Change Wallpaper:** Click to change the wallpaper.
 - **Stop Client:** Click to stop the client.
 
-
-### How does the Communication work?
-
-## Set up
-### C# Client
-The C# Client can be found under the [Driver1](Driver1/Driver1) Folder and is a Console Application that will run in the Background, It is designed to use less Memory relativley to my last Version.
-Starting it is as simple as just running the .exe File
-
+# Set up
 ### React Dashboard
 The React Frontend can be found under the [MonitorDashboard](MonitorDashboard) Folder and provides an Interface for the User to control all the connected Devices.
 
-To start the dashboard, open a terminal, move into your  `Project Folder` folder, and run the following commands:
+In order to work properly you may need to change the API URL, if that is the case you can easily edit this in the `SetupGuide.jsx` File on line 2.
+```js
+  export const backendURL = "example"
+```
+
+To start the dashboard, open a terminal, move into your  `Project Folder`, and run the following commands:
 
 ```bash
 cd ./MonitorDashboard/
@@ -57,4 +55,21 @@ npm run dev
 
 ### Node JS Server
 The Node JS Server is also Located in the MonitorDashboard folder under the [server.js](MonitorDashboard/server.js) file.
+
+To start this Server, open a terminal, move into your  `Project Folder`, and run the following commands:
+```bash
+cd ./MonitorDashboard/
+node server.js
+```
+
+### C# Client
+The C# Client can be found under the [Driver1](Driver1/Driver1) Folder and is a Console Application that will run in the Background, It is designed to use less Memory relativley to my last Version.
+
+In order to work properly you may need to change the API URL, if that is the case you can easily edit this in the `APIHandler.cs` File on line 17.
+```c#
+  public static string apiURL = "example";
+```
+
+Starting it is as simple as just running the .exe File
+
 
