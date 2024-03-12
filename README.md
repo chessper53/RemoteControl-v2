@@ -2,11 +2,10 @@
 Revamped Verison of my old RemoteControl Project. Now with an Express JS Server using my APIs to enable Communication between my react Dashboard and the C# Client.
 ### What can it do?
 
-The Client automatically sends a comprehensive set of details and configurations to the API Server every 30 seconds this data is also accompanied by a Screenshot of the current Screen and the Devices Wallpaper. This is then temporarly saved on the Server, meanwhile React checks if the Server has any connected Devices and displays their corresponding DeviceNames on it's Dashboard. If a Device is clicked upon all available Information about it is displayed and there is a Timer showing excatcly how old the Dataset is.
-[Link to Example Automated Data Set](#automatedDataSet)
+The client automatically sends comprehensive details and configurations to the API server every 30 seconds. This data, accompanied by a screenshot of the current screen and the device's wallpaper, is temporarily saved on the server. Meanwhile, React checks for connected devices and displays their corresponding device names on its dashboard. Clicking on a device reveals all available information, including a timer showing exactly how old the dataset is.
 
 <details id="automatedDataSet">
-  <summary><strong>Example Automated Data Set</strong></summary>
+  <summary><strong>Example Dataset</strong></summary>
   
   - **Device Name:** `MyComputer`
   - **User Name:** `the_test`
@@ -28,13 +27,22 @@ The Client automatically sends a comprehensive set of details and configurations
 
 </details>
 
+Additionally, you can issue commands to the selected device. These commands, executed over the server, have a response time of around 1 second:
+
+- **Lock Device:** Click to lock the device.
+- **Initiate Shut down:** Click to initiate a shutdown.
+- **Send Message:** Click to send a message to the device.
+- **Open Webpage:** Click to open a webpage.
+- **Change Wallpaper:** Click to change the wallpaper.
+- **Stop Client:** Click to stop the client.
 
 
 ### How does the Communication work?
 
-## C# Client
-### Description
+## Set up
+### C# Client
 The C# Client can be found under the XXX Folder and is a Console Application that will run in the Background, It is designed to use less Memory relativley to my last Version.
 Starting it is as simple as just running the .exe File
-## React Dashboard
-## Node JS Server
+### React Dashboard
+### Node JS Server
+
